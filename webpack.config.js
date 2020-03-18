@@ -4,19 +4,19 @@ module.exports = (env, argv) => {
   return {
     mode: argv.mode || 'development',
     watchOptions: {
-      ignored: '/node_modules/'
+      ignored: '/node_modules/',
     },
     entry: {
-      app: './src/index.js'
+      app: './src/index.js',
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist/js')
+      path: path.resolve(__dirname, 'dist/js'),
     },
     devServer: {
       contentBase: path.resolve(__dirname, 'dist'),
       open: true,
-      port: 30000
+      port: 30000,
     },
     module: {
       rules: [
@@ -26,8 +26,8 @@ module.exports = (env, argv) => {
           exclude: /(node_modules|dist)/,
           loader: 'eslint-loader',
           options: {
-            fix: true
-          }
+            fix: true,
+          },
         },
         {
           test: /\.js$/,
@@ -36,14 +36,12 @@ module.exports = (env, argv) => {
             {
               loader: 'babel-loader',
               options: {
-                presets: [
-                  '@babel/preset-env',
-                ]
-              }
-            }
-          ]
-        }
-      ]
+                presets: ['@babel/preset-env'],
+              },
+            },
+          ],
+        },
+      ],
     },
     optimization: {
       splitChunks: {
@@ -52,9 +50,9 @@ module.exports = (env, argv) => {
             test: /node_modules/,
             name: 'vendor',
             chunks: 'initial',
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   };
 };
